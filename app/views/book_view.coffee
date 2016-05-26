@@ -1,19 +1,35 @@
 $ ->
   class ReadingList.BookView extends Backbone.View
-    tagName: 'li'
+    tagName: 'div',
+    className: 'book'
 
     template: ReadingList.App.templates['book']
 
+    events:
+     'click span.book-edit': 'edit'
+     'dblclick div.book-content': 'edit'
+     'click span.book-destroy': 'clear'
+     'click button.edit-book': 'close'
+
     initialize: ->
-      @model.bind('change', this.render)
       @model.view = this
 
-    render: =>
+    render: ->
       @$el.html(@template(@model.toJSON()))
-      @setContent()
       @
 
-    setContent: ->
-      author = @model.get("author")
-      title = @model.get("title")
-      this.$('.book-content').text("#{author} - #{title}")
+    clear: ->
+      @model.clear()
+
+    edit: ->
+      @$el.addClass('editing')
+
+    close: ->
+      @model.save({
+        author: this.$('.edit-book-author').val(),
+        title: this.$('.edit-book-title').val()
+      })
+
+      @$el.removeClass('editing')
+      @render()
+

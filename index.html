@@ -4,44 +4,50 @@
     <title>Backbone Coffeescript Demo: Reading List</title>
     <link href="dist/readinglist.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="vendor/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="vendor/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
-    <!-- Reading List Interface -->
     <div id="main" class="container">
       <div id="readinglist-app" class="col-md-offset-2 col-md-8">
-        <div class="title">
+        <div class="text-center">
           <h1>Reading List</h1>
-          <h5>(created with Backbone and CoffeeScript)</h5>
+            <h5> "The book you don’t read won’t help." - Jim Rohn </h5>
         </div>
+
+        <hr>
 
         <div class="content">
-          <div id="add-book-form" class="form-inline">
-            <div class="form-group">
-              <input id="book-author" class="form-control" placeholder="Andy Weir" type="text" autofocus />
+           <div class="form-inline row">
+             <div class="form-group col-md-5 col-sm-5">
+               <label class="sr-only" for="book-author">Author</label>
+               <input id="book-author" class="form-control" placeholder="Vadim Mirgorod" type="text" autofocus required />
+             </div>
+             <div class="form-group col-md-5 col-sm-5">
+               <label class="sr-only" for="book-title">Title</label>
+               <input id="book-title" class="form-control" placeholder="Backbone.js Cookbook" type="text" />
+             </div>
+             <div class="col-md-2">
+               <button id="add-book" class="btn btn-primary" type="submit">Add</button>
+             </div>
+           </div>
+
+          <hr/>
+
+          <div class="row">
+            <div id="readinglist">
+              <ul id="books" class="list-group"></ul>
             </div>
-            <div class="form-group">
-              <input id="book-title" class="form-control" placeholder="The Martian" type="text" />
-            </div>
-            <button id="add-book" class="btn btn-primary" type="submit">Add</button>
           </div>
 
-          <div id="readinglist">
-            <ul id="books"></ul>
+          <hr/>
+
+          <div class="text-center row">
+            <div id="credits">
+              Powered by <a href="https://twitter.com/veelenga">Vitalii Elenhaupt</a> |
+              Source code at <a href="http://github.com/veelenga/backbone-readinglist">Github</a>
+            </div>
           </div>
-        </div>
-
-        <hr/>
-        <h3>Instuctions:</h3>
-        <ul id="instuctions">
-          <li>Press Add to add new book to you reading list.</li>
-          <li>Press Edit to edit a book.</li>
-        </ul>
-
-        <hr/>
-        <div id="credits">
-          Powered by <a href="http://github.com/veelenga">Vitalii Elenhaupt</a> |
-          Source code at <a href="http://github.com/veelenga/backbone-readinglist">Github</a>
         </div>
       </div>
     </div>
@@ -51,7 +57,18 @@
   <script src="dist/readinglist-min.js"></script>
   <script type="text/javascript">
     ReadingList.App.init({
-      onSave: onSaveHandler
+      onSave: onSaveHandler,
+      predefined: [
+        {
+          'author': 'David A. Black', 'title': 'The Well-Grounded Rubyist'
+        },
+        {
+          'author': 'Dave Thomas', 'title': 'Programming Elixir 1.2: Functional |> Concurrent |> Pragmatic |> Fun 1st Edition'
+        },
+        {
+          'author': 'Dmitri Sotnikov', 'title': 'Web Development with Clojure'
+        }
+      ]
     });
 
     function onSaveHandler(payload){

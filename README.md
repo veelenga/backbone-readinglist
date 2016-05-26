@@ -1,1 +1,5 @@
-Reading list app created with backbone and coffescript for learning purpose.
+# Reading List
+
+Single page [Reading list app](http://veelenga.com/backbone-readinglist/).
+
+Powered with Backbone and Coffeescript

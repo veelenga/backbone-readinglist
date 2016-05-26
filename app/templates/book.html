@@ -1,7 +1,23 @@
-<div class="book">
-  <div class="display">
-    <div class="book-content"></div>
-    <span class="book-edit"></span>
-    <span class="book-delete"></span>
+<li class="list-group-item">
+
+  <div class="book-content">
+    <%- author %> - <%- title %>
+    <span class="fa fa-trash pull-right fa-lg book-destroy"></span>
+    <span class="fa fa-pencil pull-right fa-fw book-edit"></span>
   </div>
-</div>
+
+  <div class="book-edit">
+    <div class="form-inline row">
+      <div class="form-group col-md-5 col-sm-5">
+        <input class="form-control edit-book-author" value="<%- author %>" type="text" autofocus />
+      </div>
+      <div class="form-group col-md-5 col-sm-5">
+        <input class="form-control edit-book-title" value="<%- title %>" type="text" />
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-warning edit-book" type="submit">Save</button>
+      </div>
+    </div>
+  </div>
+
+</li>

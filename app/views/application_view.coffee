@@ -14,6 +14,8 @@ $ ->
       @books.bind('add', @addOne)
       @books.fetch()
 
+      @books.add(options.predefined) if @books.size() < 1
+
     addOne: (book) =>
       view = new ReadingList.BookView({ model: book })
       this.$('#books').append( view.render().el )
@@ -23,6 +25,6 @@ $ ->
         author: @bookAuthor.val(),
         title: @bookTitle.val(),
         read: false
-      })
+      }, {wait: true})
       @bookAuthor.val('')
       @bookTitle.val('')
