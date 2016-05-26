@@ -1,0 +1,33 @@
+#main {
+  min-width: 200px;
+  max-width: 790px;
+  margin-top: 10px;
+  padding: 30px;
+  border-radius: 25px;
+  transition: 1s ease;
+  -webkit-box-shadow: 0 0 5px 0px #888;
+  -moz-box-shadow: 0 0 5px 0px #888;
+  box-shadow: 0 0 5px 0px #888;
+}
+#main:hover {
+  -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+}
+#main div.book div.book-content {
+  display: block;
+}
+#main div.book div.book-edit {
+  display: none;
+}
+#main div.book.editing div.book-content {
+  display: none;
+}
+#main div.book.editing div.book-edit {
+  display: block;
+}
+#main div.book li span.fa {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=readinglist.css.map */
