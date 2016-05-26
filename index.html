@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Backbone Coffeescript Demo: Reading List</title>
+    <link href="dist/readinglist.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="vendor/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body>
+    <!-- Reading List Interface -->
+    <div id="main" class="container">
+      <div id="readinglist-app" class="col-md-offset-4 col-md-6">
+        <div class="title raw">
+          <h1>Reading List</h1>
+          <h3>in Backbone with CoffeeScript</h3>
+        </div>
+
+        <div class="content">
+          <div id="create-entry"></div>
+
+          <div id="readinglist"></div>
+        </div>
+
+        <h3>Instuctions:</h3>
+        <ul id="instuctions">
+          <li>Press add to add new book to you reading list.</li>
+          <li>Double-click to edit your book.</li>
+        </ul>
+
+        <div id="credits">
+          Created by <a href="http://veelenga.com/about">Vitalii Elenhaupt</a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script src="dist/readinglist_vendor-min.js"></script>
+  <script src="dist/readinglist-min.js"></script>
+  <script type="text/javascript">
+    ReadingList.App.init({
+      onSave: onSaveHandler
+    });
+
+    function onSaveHandler(payload){
+      console.log(payload);
+    }
+  </script>
+</html>

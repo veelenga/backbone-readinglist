@@ -1,4 +1,4 @@
-TASKS = ['coffee:compile', 'sass:compile', 'concat:js', 'concat:css', 'clean:compiled', 'uglify:dist']
+TASKS = ['jst:compile', 'coffee:compile', 'sass:compile', 'concat:js', 'concat:css', 'clean:compiled', 'uglify:dist']
 
 module.exports = (grunt) ->
 
@@ -7,6 +7,17 @@ module.exports = (grunt) ->
     compiledFolder: 'compiled'
     distFolder: 'dist'
     vendorFolder: 'vendor'
+
+    # grunt jst
+    jst:
+      compile:
+        options:
+          namespace: 'ReadingList.App.templates'
+          processName: (filename) ->
+            folder = "templates/"
+            filename.slice(filename.indexOf(folder) + folder.length, filename.indexOf(".html"))
+        files:
+          '<%= compiledFolder %>/templates.js': '<%= srcFolder %>/templates/**/*.html'
 
     # grunt coffee
     coffee:
@@ -30,14 +41,14 @@ module.exports = (grunt) ->
     concat:
       css:
         files:
-          '<%= distFolder %>/readinglist.css': '<%= compiledFolder %>/*.scss'
+          '<%= distFolder %>/readinglist.css': '<%= compiledFolder %>/*.css'
       js:
         files:
           '<%= distFolder %>/readinglist.js': '<%= compiledFolder %>/*.js'
           '<%= vendorFolder %>/js/vendor.js': [
             'bower_components/jquery/dist/jquery.js'
-            'bower_components/jquery/dist/underscore.js'
-            'bower_components/jquery/dist/backbone.js'
+            'bower_components/underscore/underscore.js'
+            'bower_components/backbone/backbone.js'
           ]
 
     # grunt clean
@@ -59,6 +70,7 @@ module.exports = (grunt) ->
         tasks: TASKS
 
 
+    grunt.loadNpmTasks('grunt-contrib-jst')
     grunt.loadNpmTasks('grunt-contrib-coffee')
     grunt.loadNpmTasks('grunt-contrib-sass')
     grunt.loadNpmTasks('grunt-contrib-concat')
