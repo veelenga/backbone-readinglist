@@ -49,6 +49,7 @@ module.exports = (grunt) ->
             'bower_components/jquery/dist/jquery.js'
             'bower_components/underscore/underscore.js'
             'bower_components/backbone/backbone.js'
+            'bower_components/Backbone.localStorage/backbone.localStorage-min.js'
           ]
 
     # grunt clean
@@ -66,7 +67,7 @@ module.exports = (grunt) ->
     # grunt watch
     watch:
       all:
-        files: ['<%= srcFolder %>/**/*.{coffee,scss,css,html}']
+        files: ['<%= srcFolder %>/**/*.{coffee,scss,css,html}', 'Gruntfile.coffee']
         tasks: TASKS
 
 

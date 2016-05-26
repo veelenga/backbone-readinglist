@@ -9,26 +9,39 @@
   <body>
     <!-- Reading List Interface -->
     <div id="main" class="container">
-      <div id="readinglist-app" class="col-md-offset-4 col-md-6">
-        <div class="title raw">
+      <div id="readinglist-app" class="col-md-offset-2 col-md-8">
+        <div class="title">
           <h1>Reading List</h1>
-          <h3>in Backbone with CoffeeScript</h3>
+          <h5>(created with Backbone and CoffeeScript)</h5>
         </div>
 
         <div class="content">
-          <div id="create-entry"></div>
+          <div id="add-book-form" class="form-inline">
+            <div class="form-group">
+              <input id="book-author" class="form-control" placeholder="Andy Weir" type="text" autofocus />
+            </div>
+            <div class="form-group">
+              <input id="book-title" class="form-control" placeholder="The Martian" type="text" />
+            </div>
+            <button id="add-book" class="btn btn-primary" type="submit">Add</button>
+          </div>
 
-          <div id="readinglist"></div>
+          <div id="readinglist">
+            <ul id="books"></ul>
+          </div>
         </div>
 
+        <hr/>
         <h3>Instuctions:</h3>
         <ul id="instuctions">
-          <li>Press add to add new book to you reading list.</li>
-          <li>Double-click to edit your book.</li>
+          <li>Press Add to add new book to you reading list.</li>
+          <li>Press Edit to edit a book.</li>
         </ul>
 
+        <hr/>
         <div id="credits">
-          Created by <a href="http://veelenga.com/about">Vitalii Elenhaupt</a>
+          Powered by <a href="http://github.com/veelenga">Vitalii Elenhaupt</a> |
+          Source code at <a href="http://github.com/veelenga/backbone-readinglist">Github</a>
         </div>
       </div>
     </div>
