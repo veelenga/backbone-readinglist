@@ -15,6 +15,12 @@
         stars: 0
       };
 
+      Book.prototype.validate = function(attributes) {
+        if (!(attributes.author && attributes.title)) {
+          return 'Author and title required';
+        }
+      };
+
       Book.prototype.toggle_read = function() {
         return this.save({
           read: !this.get("read")
@@ -102,9 +108,18 @@
         this.bookTitle = this.$('#book-title');
         this.books = new ReadingList.BookList();
         this.books.bind('add', this.addOne);
+        this.books.bind('change', function(model) {
+          return options.onSave.call(this, model.previousAttributes(), model.changed);
+        });
         this.books.fetch();
         if (this.books.size() < 1) {
-          return this.books.add(options.predefined);
+          return _.each(options.predefined, (function(_this) {
+            return function(book) {
+              return _this.books.create(book, {
+                wait: true
+              });
+            };
+          })(this));
         }
       };
 
