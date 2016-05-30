@@ -4,6 +4,10 @@ $ ->
       read: false
       stars: 0
 
+    validate: (attributes) ->
+      unless attributes.author and attributes.title
+        return 'Author and title required'
+
     toggle_read: ->
       @save({ read: !@get("read") })
 

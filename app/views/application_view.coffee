@@ -12,9 +12,16 @@ $ ->
 
       @books = new ReadingList.BookList()
       @books.bind('add', @addOne)
+      @books.bind('change', (model) ->
+        options.onSave.call(@, model.previousAttributes(), model.changed)
+      )
+
       @books.fetch()
 
-      @books.add(options.predefined) if @books.size() < 1
+      if @books.size() < 1
+        _.each(options.predefined, (book) =>
+          @books.create(book, { wait: true })
+        )
 
     addOne: (book) =>
       view = new ReadingList.BookView({ model: book })
@@ -25,6 +32,6 @@ $ ->
         author: @bookAuthor.val(),
         title: @bookTitle.val(),
         read: false
-      }, {wait: true})
+      }, { wait: true })
       @bookAuthor.val('')
       @bookTitle.val('')
